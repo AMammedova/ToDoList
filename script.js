@@ -35,6 +35,7 @@ function addTask(){
     todoText.innerText=input.value;
     textarray.push(input.value)
     element.append(todoText);
+    element.innerHTML+=`<i class="fa-solid fa-pen-to-square eicon" onclick="editEl(this.previousElementSibling)"></i>`
     element.innerHTML+=`<i class="fa-solid fa-circle-xmark xicon"></i>`
     addTodo.append(element)
     array.push(element);
@@ -44,6 +45,7 @@ function addTask(){
    btn.addEventListener("click",()=>{
     if(input.value !=""){
        addTask();
+       input.value="";
         
     } 
 
@@ -53,6 +55,7 @@ input.addEventListener("keypress",(e)=>{
    
     if(e.key==="Enter"){
         addTask();
+        input.value="";
     }
             
         });
@@ -80,5 +83,29 @@ clear.addEventListener("click",()=>{
     location.reload();
 })
 
-
-
+function editEl(element)
+{
+    const { value } = Swal.fire({
+        title: 'Edit Task',
+        input: 'text',
+        inputLabel: 'Change from here',
+        inputValue: element.innerText,
+        confirmButtonText: 'Save',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+              return 'You need to write something!'
+            }
+            else {
+                element.innerText = value;
+            }
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Successfully!',
+                'Your task has changed successfully!',
+                'success');
+        }
+      })
+}

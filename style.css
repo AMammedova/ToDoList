@@ -68,12 +68,17 @@ span{
     cursor: pointer;
 }
 
-.xicon{
+.xicon, .eicon{
 display: inline-block;
     font-size: 25px;
     cursor: pointer;
- 
-    
+}
+.eicon{
+    margin-left: 244px
+}
+
+.xicon{
+    margin-left: 5px;
 }
 .icon{
     display: inline-block;
@@ -82,7 +87,7 @@ display: inline-block;
      
         
     }
-.xicon:hover{
+.xicon:hover, .eicon:hover{
     color: #833AE0;
 }
 
